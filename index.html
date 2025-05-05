@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS Attack Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #attackMessage {
+            font-size: 30px;
+            font-weight: bold;
+            display: none;
+            color: red;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .btn {
+            padding: 15px 25px;
+            font-size: 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .btn:hover {
+            background-color: #d32f2f;
+        }
+
+        #websiteLink {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #00ff00;
+            display: none;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 60%;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Our Website</h1>
+    <p>If you want to Attack a  DDoS attack , enter the website link and click below:</p>
+
+    <!-- Input box for website link -->
+    <input type="text" id="websiteInput" placeholder="Enter website link here">
+
+    <!-- Button to start fake DDoS -->
+    <button class="btn" onclick="startAttack()">Start Fake DDoS Attack</button>
+
+    <!-- Attack Message -->
+    <div id="attackMessage">
+        <p>WARNING: Your website is under a heavy DDoS attack!</p>
+        <p>Attempting to overwhelm the server...</p>
+    </div>
+
+    <!-- Display the target link -->
+    <div id="websiteLink">
+        <p>Attack Target: <span id="targetLink"></span></p>
+    </div>
+
+    <script>
+        function startAttack() {
+            var websiteLink = document.getElementById('websiteInput').value; // Get the website link entered by the user
+            
+            if (websiteLink) {
+                // Show fake DDoS message
+                document.getElementById('attackMessage').style.display = 'block';
+
+                // Display the entered website link as the target
+                document.getElementById('targetLink').textContent = websiteLink;
+                document.getElementById('websiteLink').style.display = 'block';
+
+                // Add random background color change effect for the DDoS illusion
+                setInterval(function() {
+                    document.body.style.backgroundColor = getRandomColor();
+                }, 100);
+
+                // Simulate fake traffic by rapidly changing the screen content
+                setInterval(function() {
+                    document.body.innerHTML += "<p>Incoming attack packet...</p>";
+                }, 500);
+            } else {
+                alert('Please enter a website link to start the attack simulation.');
+            }
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
+</body>
+</html>
